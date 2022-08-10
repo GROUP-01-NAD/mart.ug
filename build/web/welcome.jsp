@@ -129,6 +129,7 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
+                            <a href="#statistics" class="nav-item nav-link">Stats</a>
                             <a href="#category" class="nav-item nav-link">Category</a>
                             <a href="#featured_products" class="nav-item nav-link">Products</a>
                             <a href="#contactus" class="nav-item nav-link">Contact</a>
@@ -216,7 +217,8 @@
         </div>
     </div>
     <!-- Carousel End -->
-
+   
+    <!-- Statistics -->
     <% 
                     try{ 
                         Class.forName("com.mysql.jdbc.Driver");
@@ -230,8 +232,8 @@
                         
                             int count_row = rs.getInt(1);
                     %>
-                   <!-- Statistics -->
-    <div class="container-fluid pt-5">
+                   
+    <div class="container-fluid pt-5" id="statistics">
         <div class="row px-xl-5 pb-3">
             <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                 <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
@@ -254,19 +256,28 @@
                         Statement st = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                         ResultSet.CONCUR_UPDATABLE);
                         st = conn.createStatement();
-                        String sql = "SELECT SUM(quantity) FROM products";
+                        String sql = "SELECT SUM(quantity) as num, SUM(quantity_left) as lef FROM products";
                         ResultSet rs = st.executeQuery(sql);
                         while(rs.next()){
-                        
-                            int count_row = rs.getInt(1);
+                            int lef = rs.getInt("lef");
+                            int add = rs.getInt("num");
+                            double sales = Math.round((100.0-((double)lef/add)*100.0));
+                            //out.println(add);
                     %>
               
             <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                 <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
-                    <h1 class="fa fa-shipping-fast text-primary m-0 mr-2"></h1>
-                    <h5 class="font-weight-semi-bold m-0">Free Shipping</h5>
+                    <h1 class="fa fa-shipping-fast text-primary m-0 mr-2" style="font-size: 33.3px"><%out.println(sales);%>%</h1>
+                    <h5 class="font-weight-semi-bold m-0">SOLD</h5>
                 </div>
             </div>
+                    
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
+                    <h1 class="fas fa-exchange-alt text-primary m-0 mr-3"><%out.println(lef);%></h1>
+                    <h5 class="font-weight-semi-bold m-0">AVAILABLE</h5>
+                </div>
+            </div>        
 <%
                     }
                     }catch(ClassNotFoundException | SQLException c){
@@ -274,12 +285,7 @@
                     }  
 %>
     
-            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-                <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
-                    <h1 class="fas fa-exchange-alt text-primary m-0 mr-3"></h1>
-                    <h5 class="font-weight-semi-bold m-0">14-Day Return</h5>
-                </div>
-            </div>
+            
             <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                 <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
                     <h1 class="fa fa-phone-volume text-primary m-0 mr-3"></h1>

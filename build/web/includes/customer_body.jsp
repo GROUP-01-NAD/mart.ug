@@ -6,27 +6,73 @@
 
 
     <!-- Statistics -->
-    <div class="container-fluid pt-5" id="statistics">        
-        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Statistics</span></h2>
+    <% 
+                    try{ 
+                        Class.forName("com.mysql.jdbc.Driver");
+                        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mart","root","");
+                        Statement st = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+                        ResultSet.CONCUR_UPDATABLE);
+                        st = conn.createStatement();
+                        String sql = "SELECT COUNT(*) FROM users";
+                        ResultSet rs = st.executeQuery(sql);
+                        while(rs.next()){
+                        
+                            int count_row = rs.getInt(1);
+                    %>
+                   
+    <div class="container-fluid pt-5" id="statistics">
         <div class="row px-xl-5 pb-3">
             <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                 <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
-                    <h1 class="fa fa-check text-primary m-0 mr-3"></h1>
-                    <h5 class="font-weight-semi-bold m-0">Quality Product</h5>
+                    <h1 class="fa fa-check text-primary m-0 mr-3"><%out.println(count_row);%></h1>
+                    <h5 class="font-weight-semi-bold m-0">USERS</h5>
                 </div>
             </div>
+<%
+                    }
+                    }catch(ClassNotFoundException | SQLException c){
+                    out.println(c.getMessage());
+                    }  
+%>
+
+
+ <% 
+                    try{ 
+                        Class.forName("com.mysql.jdbc.Driver");
+                        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mart","root","");
+                        Statement st = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+                        ResultSet.CONCUR_UPDATABLE);
+                        st = conn.createStatement();
+                        String sql = "SELECT SUM(quantity) as num, SUM(quantity_left) as lef FROM products";
+                        ResultSet rs = st.executeQuery(sql);
+                        while(rs.next()){
+                            int lef = rs.getInt("lef");
+                            int add = rs.getInt("num");
+                            double sales = Math.round((100.0-((double)lef/add)*100.0));
+                            //out.println(add);
+                    %>
+              
             <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                 <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
-                    <h1 class="fa fa-shipping-fast text-primary m-0 mr-2"></h1>
-                    <h5 class="font-weight-semi-bold m-0">Free Shipping</h5>
+                    <h1 class="fa fa-shipping-fast text-primary m-0 mr-2" style="font-size: 33.3px"><%out.println(sales);%>%</h1>
+                    <h5 class="font-weight-semi-bold m-0">SOLD</h5>
                 </div>
             </div>
+                    
             <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                 <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
-                    <h1 class="fas fa-exchange-alt text-primary m-0 mr-3"></h1>
-                    <h5 class="font-weight-semi-bold m-0">14-Day Return</h5>
+                    <h1 class="fas fa-exchange-alt text-primary m-0 mr-3"><%out.println(lef);%></h1>
+                    <h5 class="font-weight-semi-bold m-0">AVAILABLE</h5>
                 </div>
-            </div>
+            </div>        
+<%
+                    }
+                    }catch(ClassNotFoundException | SQLException c){
+                    out.println(c.getMessage());
+                    }  
+%>
+    
+            
             <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                 <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
                     <h1 class="fa fa-phone-volume text-primary m-0 mr-3"></h1>

@@ -149,7 +149,7 @@
                 </table>
             </div>
         </div>
-<!-- Product_category --> 
+<!-- staff_allocation --> 
 
 <!-- Add Product_category -->
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 10, 2022 at 02:16 PM
+-- Generation Time: Aug 10, 2022 at 08:01 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `categories` (
   `id` int(11) NOT NULL,
   `category` varchar(160) CHARACTER SET utf8 DEFAULT NULL,
+  `cat_image` varchar(34) DEFAULT NULL,
   `date_created` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `description` varchar(265) CHARACTER SET utf8 DEFAULT NULL,
   `status` smallint(6) NOT NULL DEFAULT 1,
@@ -40,15 +41,12 @@ CREATE TABLE `categories` (
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`id`, `category`, `date_created`, `description`, `status`, `uri`) VALUES
-(1, 'Mens Shirt', '2022-08-07 11:37:40', 'Many of them', 1, NULL),
-(2, 'Lady Shirt', '2022-08-07 11:39:44', 'Sell all', 1, NULL),
-(4, 'Suits Men', '2022-08-10 07:20:11', 'unique attires.', 1, NULL),
-(24, 'Suits Men', '2022-08-10 09:10:54', 'unique attires.', 1, NULL),
-(31, 'Mens Shoes', '2022-08-10 09:29:01', 'Fresh stocks', 1, NULL),
-(32, 'Mens Shoes', '2022-08-10 09:29:06', 'Fresh stocks', 1, NULL),
-(33, 'Hair Dressers', '2022-08-10 09:54:49', 'For Ladies only', 1, NULL),
-(34, 'Hair Dressers', '2022-08-10 10:12:41', 'For Ladies only', 1, NULL);
+INSERT INTO `categories` (`id`, `category`, `cat_image`, `date_created`, `description`, `status`, `uri`) VALUES
+(1, 'Mens Shirt', 'product-4.jpg', '2022-08-10 12:48:58', 'Many of them', 1, NULL),
+(2, 'Lady Shirt', 'product-2.jpg', '2022-08-10 12:49:20', 'Sell all', 1, NULL),
+(24, 'Suits Men', 'product-9.jpg', '2022-08-10 12:50:07', 'unique attires.', 1, NULL),
+(31, 'Mens Shoes', 'product-7.jpg', '2022-08-10 12:50:37', 'Fresh stocks', 1, NULL),
+(33, 'Hair Dressers', 'product-5.jpg', '2022-08-10 12:51:29', 'For Ladies only', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -112,9 +110,6 @@ INSERT INTO `products` (`id`, `products`, `date_created`, `status`, `delete`, `q
 (37, 'Shoes', '2022-08-10 09:22:39', 1, 0, 23, 21, 56, 'unique attires.', 'cat-1.jpg', NULL, NULL, 2, 84),
 (42, 'Fake Phones', '2022-08-10 09:23:30', 1, 0, 90, 54, 2222, 'unique attires.', 'product-4.jpg', NULL, NULL, 2, 85),
 (46, 'Indian Posho', '2022-08-10 09:24:11', 1, 0, 7676, 98, 222, 'unique attires.', 'cat-1.jpg', NULL, NULL, 1, 83),
-(49, 'Clarks', '2022-08-10 09:32:51', 1, 0, 23, 23, 444, 'from German', 'cat-1.jpg', NULL, NULL, 32, 84),
-(50, 'Red Dresses', '2022-08-10 09:34:20', 1, 0, 76, 76, 233, 'Brand Stocks', 'product-4.jpg', NULL, NULL, 32, 85),
-(51, 'Doir Shirts', '2022-08-10 09:53:16', 1, 0, 565, 565, 111, 'New Stocks', 'carousel-1.jpg', NULL, NULL, 24, 84),
 (52, 'German Sherperd', '2022-08-10 10:15:11', 1, 0, 455, 455, 3737, 'New Arrival', 'cat-1.jpg', NULL, NULL, 33, 84);
 
 -- --------------------------------------------------------
@@ -140,9 +135,9 @@ CREATE TABLE `product_line` (
 --
 
 INSERT INTO `product_line` (`id`, `product_term`, `quantity`, `quantity_left`, `date_added`, `date_created`, `status`, `deleted`, `description`) VALUES
-(83, 'long term', 80, 3, '2022-08-08', '2022-08-07 10:40:26', 1, 0, 'New Updates'),
-(84, 'mid term', 160, 8, '2022-08-08', '2022-08-07 10:40:26', 1, 0, 'New Updates'),
-(85, 'short term', 800, 40, '2022-08-08', '2022-08-07 10:40:26', 1, 0, 'New Updates');
+(83, 'long term', 10, 3, '2022-08-19', '2022-08-07 10:40:26', 1, 0, 'unique attires.'),
+(84, 'mid term', 20, 8, '2022-08-19', '2022-08-07 10:40:26', 1, 0, 'unique attires.'),
+(85, 'short term', 100, 40, '2022-08-19', '2022-08-07 10:40:26', 1, 0, 'unique attires.');
 
 -- --------------------------------------------------------
 
@@ -211,14 +206,15 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `user`, `date_added`, `uri`, `status`, `deleted`, `gender`, `location`, `email`, `user_name`, `password`, `role`, `product_line`) VALUES
 (24, 'opio', '2022-08-05 08:54:40', '/ututu', 1, 2, 'm', 'gfgf', 'k', 'sam', 'rrr', 2, 85),
 (25, 'Eluk', '2022-08-05 09:43:59', NULL, 1, 2, 'M', NULL, NULL, NULL, '1111', NULL, NULL),
-(27, 'JUJU', '2022-08-05 09:49:39', NULL, 1, 2, 'M', 'JJJ', 's@w', 'hd', '55', 2, 85),
+(27, 'JUJU', '2022-08-05 09:49:39', NULL, 1, 2, 'M', 'JJJ', 's@w', 'hd', '55', 2, 83),
 (28, 'yyy', '2022-08-05 20:35:02', NULL, 1, 2, 'M', 'hhh', 'a@W', 'bjj', '222', 1, NULL),
 (29, 'okello', '2022-08-06 08:28:23', 'admin', 1, 2, 'M', 'kama', 'a@a', 'dan', '1122', 3, NULL),
 (32, 'hdf', '2022-08-06 09:48:41', NULL, 1, 2, 'F', 'jdjd', 'e@w', 'ww', '11', 1, NULL),
 (33, 'maya', '2022-08-07 08:46:15', NULL, 1, 2, 'M', 'luwero', 'mark@gmail', 'mac', '1234', 1, NULL),
 (34, 'Opio', '2022-08-08 11:06:30', NULL, 1, 2, 'F', 'Jinja', 'a@W', 'Samack', '111', 2, 83),
 (36, 'ronald', '2022-08-08 12:58:39', NULL, 1, 2, 'M', 'opop', 's@s', 'jj', '88', 3, NULL),
-(37, 'PEDI', '2022-08-08 15:18:36', NULL, 1, 2, 'M', 'Gulu', 'h@w', 'dr', '111', 2, 83);
+(37, 'PEDI', '2022-08-08 15:18:36', NULL, 1, 2, 'M', 'Gulu', 'h@w', 'dr', '111', 2, 83),
+(38, 'jona', '2022-08-10 17:56:02', NULL, 1, 2, 'M', 'ka', 'zfzzs@b', 'jona', '123', 1, NULL);
 
 --
 -- Indexes for dumped tables
@@ -327,7 +323,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- Constraints for dumped tables
