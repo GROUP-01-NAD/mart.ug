@@ -3,6 +3,15 @@
         <%@page import="java.sql.SQLException"%>
         <%@page import="java.sql.Connection"%>
         <%@page import="java.sql.DriverManager"%>
+        
+<%
+    String user = null;
+    int user_id = (int)session.getAttribute("user_id");
+    if(session.getAttribute("user") == null){
+        response.sendRedirect(request.getContextPath() + "/login.jsp");
+        
+    }else {user = (String)session.getAttribute("user");}
+%>
 
 
     <!-- Statistics -->
@@ -141,13 +150,19 @@
                     String sql = "SELECT * FROM products INNER JOIN categories ON products.category = categories.id INNER JOIN product_line ON products.product_term = product_line.id";
                     ResultSet rs = st.executeQuery(sql);
                     while(rs.next()){
+                    int product_id = rs.getInt("products.id");
             %>
                 <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                     <div class="product-item bg-light mb-4">
                         <div class="product-img position-relative overflow-hidden">
                             <img class="img-fluid w-100" src="img/<%=rs.getString("image") %>" alt="">
                             <div class="product-action">
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
+                                <form method="POST" action="MyCart">
+                                    <input hidden="true" value="<%=user_id%>" name="user_id">
+                                    <input hidden="true" value="<%=product_id%>" name="product_id">
+
+                                    <button type="submit" class="btn btn-outline-dark btn-square"><i class="fa fa-shopping-cart"></i></button>
+                                </form>
                                 <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
                             </div>
                         </div>

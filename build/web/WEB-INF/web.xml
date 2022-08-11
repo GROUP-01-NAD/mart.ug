@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>MyCart</servlet-name>
+        <servlet-class>Product.sales.MyCart</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Checkout</servlet-name>
+        <servlet-class>Product.sales.Checkout</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MyCart</servlet-name>
+        <url-pattern>/MyCart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Checkout</servlet-name>
+        <url-pattern>/Checkout</url-pattern>
+    </servlet-mapping>
     <welcome-file-list>
         <welcome-file>welcome.jsp</welcome-file>
     </welcome-file-list>
+    <tag-config>
+        <taglib>
+            <tag-uri>/WEB-INF/tlds/In_cart.tld</tag-uri>
+            <tag-location>home/samuel/Desktop/NAD/mart.ug/web/WEB-INF/tlds/In_cart.tld</tag-location>
+        </taglib>
+    </tag-config>
 </web-app>

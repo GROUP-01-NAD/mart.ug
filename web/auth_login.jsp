@@ -38,9 +38,11 @@
                                 if(rslt.next()){
                                     int user_role = rslt.getInt("role");
                                     String current_user = rslt.getString("user");
+                                    int user_id = rslt.getInt("users.id");
                                     if (user_role == 1) {
                                         request.setAttribute("success", "Login Successful!");
                                         session.setAttribute("user", current_user);
+                                        session.setAttribute("user_id", user_id);
                                         request.getRequestDispatcher("DashboardCustomer.jsp").forward(request, response);
                                         response.sendRedirect(request.getContextPath() + "/DashboardCustomer.jsp");
                                         return;
