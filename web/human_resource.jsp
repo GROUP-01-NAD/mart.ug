@@ -13,7 +13,7 @@
     <div class="container-fluid">
         <div class="row px-xl-5">
                 <a href="DashboardManager.jsp" class="btn btn-block btn-primary col-md-6 form-group">DASHBOARD</a>
-                <a href="#add_user" class="h6 text-primary bg-dark px-2" style="color: yellow; font-size: 30px;">ADD STAFF</a>
+                <a href="#add_user" class="h6 text-primary bg-dark px-2" style="color: yellow; font-size: 30px;">ADD USERS</a>
                 <a href="#allocate_staff" class="h6 text-primary bg-dark px-2" style="color: yellow; font-size: 30px;">ALLOCATE STAFF</a>
                 <div class="col-md-6 form-group">
                     <p style="color:green">${requestScope.error}</p>
