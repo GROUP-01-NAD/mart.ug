@@ -16,6 +16,10 @@
         <servlet-name>staff_cart</servlet-name>
         <servlet-class>Product.sales.staff_cart</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Likes</servlet-name>
+        <servlet-class>Product.sales.Likes</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MyCart</servlet-name>
         <url-pattern>/MyCart</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>staff_cart</servlet-name>
         <url-pattern>/staff_cart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Likes</servlet-name>
+        <url-pattern>/Likes</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>welcome.jsp</welcome-file>

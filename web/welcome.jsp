@@ -135,9 +135,8 @@
                             <a href="#contactus" class="nav-item nav-link">Contact</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
-                            <a href="" class="btn px-0">
+                            <a href="liked.jsp" class="btn px-0">
                                 <i class="fas fa-heart text-primary"></i>
-                                <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">0</span>
                             </a>
                             <a href="login.jsp" class="btn px-0 ml-3">
                                 <i class="fas fa-shopping-cart text-primary"></i>
@@ -360,8 +359,14 @@
                         <div class="product-img position-relative overflow-hidden">
                             <img class="img-fluid w-100" src="img/<%=rs.getString("image") %>" alt="">
                             <div class="product-action">
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
+                                <a class="btn btn-outline-dark btn-square" href="login.jsp"><i class="fa fa-shopping-cart"></i></a>
+                                <form method="post" action="Likes">
+                                    <input hidden="true" value="<%=rs.getString("id")%>" name="product_id"/>
+                                    <input hidden="true" value="<%=rs.getString("products")%>" name="product_name"/>
+                                    <input hidden="true" value="<%=rs.getString("price")%>" name="product_price"/>
+
+                                    <button type="submit" class="btn btn-outline-dark btn-square"><i class="far fa-heart"></i></button>
+                                </form>
                             </div>
                         </div>
                         <div class="text-center py-4">

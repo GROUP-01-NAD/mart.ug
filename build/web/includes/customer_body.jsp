@@ -137,8 +137,12 @@
 
     <!-- Products Start -->
     <div class="container-fluid pt-5 pb-3" id="featured_products">
+        <div class="col-md-6 form-group">
+            <p style="color:green">${requestScope.error}</p>
+        </div>
         <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Featured Products</span></h2>
         <div class="row px-xl-5">
+            
             
             <% 
                 try{ 
@@ -154,6 +158,7 @@
             %>
                 <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                     <div class="product-item bg-light mb-4">
+                       
                         <div class="product-img position-relative overflow-hidden">
                             <img class="img-fluid w-100" src="img/<%=rs.getString("image") %>" alt="">
                             <div class="product-action">
@@ -163,7 +168,12 @@
 
                                     <button type="submit" class="btn btn-outline-dark btn-square"><i class="fa fa-shopping-cart"></i></button>
                                 </form>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
+                                <form method="POST" action="like_all.jsp">
+                                    <input hidden="true" value="customer_likes" name="likes">
+                                    <input hidden="true" value="<%=user_id%>" name="user_id">
+                                    <input hidden="true" value="<%=product_id%>" name="product_id">
+                                    <button type="submit" class="btn btn-outline-dark btn-square"><i class="far fa-heart"></i></i></button>
+                                </form>
                             </div>
                         </div>
                         <div class="text-center py-4">
