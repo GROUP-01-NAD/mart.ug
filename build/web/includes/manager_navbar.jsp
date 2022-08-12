@@ -106,6 +106,7 @@
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
                             <a href="#statistics" class="nav-item nav-link">Stats</a>
+                           <a href="repo.jsp" class="nav-item nav-link">Reports</a>
                             <a href="#contactus" class="nav-item nav-link">Contact</a>
                             <a href="productLine.jsp" class="nav-item nav-link">Product-Line</a>
                             <div class="nav-item dropdown">

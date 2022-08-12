@@ -125,7 +125,9 @@
                             <td class="align-middle"><%=rs.getString("product_line.quantity_left") %></td>
                             <td class="align-middle"><%=percentage%>%</td>
                             <td class="align-middle"><%=rs.getString("product_line.product_term") %></td>
-                            <td class="align-middle">
+                            
+<!-- Head -->
+        <%@page import="java.sql.ResultSet"%><td class="align-middle">
                                 <form method="post" action="customerdb.jsp">
                                     <input type="hidden" id="action" name="dataEntry" value="allocation_update" hidden>
                                     <input type="hidden" id="user_id" name="user_id" value="<%=rs.getInt("id") %>" hidden>
@@ -170,7 +172,7 @@
                         <input type="hidden" id="action" name="dataEntry" value="register_staffs" hidden>
                         <div class="col-md-6 form-group">
                             <label>Full Name</label>
-                            <input class="form-control" type="text" placeholder="Eluk Sam" name="name" id="name" required>
+                            <input class="form-control" type="text" placeholder="Mayambala mark" name="name" id="name" required>
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Gender</label>
