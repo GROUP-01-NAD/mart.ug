@@ -23,7 +23,7 @@ import java.util.logging.Logger;
  *
  * @author samuel
  */
-public class MyCart extends HttpServlet {
+public class staff_cart extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -44,13 +44,15 @@ public class MyCart extends HttpServlet {
             prp.setString(2,product_id);
             
             ResultSet rslt = prp.executeQuery();
-            
+            if(rslt.next()){
+                response.sendRedirect(request.getContextPath()+"/DashboardStaff.jsp");
+            }else{
                 Statement st = con.createStatement();
                 sql = "INSERT INTO cart (product_id, user_id) VALUES ('"+product_id+"','"+user_id+"')";
                 st.executeUpdate(sql);
 
-                response.sendRedirect(request.getContextPath()+"/DashboardCustomer.jsp");
-            
+                response.sendRedirect(request.getContextPath()+"/DashboardStaff.jsp");
+            }
         }
     }
 

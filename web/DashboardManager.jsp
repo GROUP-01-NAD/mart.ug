@@ -17,7 +17,7 @@
 
 
 <!-- Statistics -->
-<jsp:include page="includes/customer_body.jsp" flush="true"></jsp:include>
+<jsp:include page="includes/manager_body.jsp" flush="true"></jsp:include>
 <!-- Statistics -->
 
 

@@ -6,7 +6,7 @@
         
     }else {user = (String)session.getAttribute("user");}
 %>
-
+<%@taglib uri="/WEB-INF/tlds/In_cart.tld" prefix="cart" %>
     <!-- Topbar Start -->
     <div class="container-fluid">
         <div class="row bg-secondary py-1 px-xl-5">
@@ -122,16 +122,17 @@
                                     <a href="#featured_products" class="dropdown-item">View Products</a>
                                 </div>
                             </div>
-                            <a href="human_resource.jsp" class="nav-item nav-link">Human Resource</a>
+                            <a href="human_resource.jsp" class="nav-item nav-link">Human-Resource</a>
+                            <a href="customer_tracking.jsp" class="nav-item nav-link">Base-Tracking</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
                             <a href="" class="btn px-0">
                                 <i class="fas fa-heart text-primary"></i>
                                 <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">0</span>
                             </a>
-                            <a href="" class="btn px-0 ml-3">
+                            <a href="manager_cart.jsp" class="btn px-0 ml-3">
                                 <i class="fas fa-shopping-cart text-primary"></i>
-                                <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">23</span>
+                                <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;"><cart:cart user_id="${user_id}"/></span>
                             </a>
                         </div>
                     </div>

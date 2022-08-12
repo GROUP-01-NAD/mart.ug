@@ -49,12 +49,14 @@
                                     }else if(user_role == 2){
                                         request.setAttribute("success", "Login Successful!");
                                         session.setAttribute("user", current_user);
+                                        session.setAttribute("user_id", user_id);
                                         request.getRequestDispatcher("DashboardStaff.jsp").forward(request, response);
                                         response.sendRedirect(request.getContextPath() + "/DashboardStaff.jsp");
                                         return;
                                     }else if(user_role == 3){
                                         request.setAttribute("success", "Login Successful!");
                                         session.setAttribute("user", current_user);
+                                        session.setAttribute("user_id", user_id);
                                         request.getRequestDispatcher("DashboardManager.jsp").forward(request, response);
                                         response.sendRedirect(request.getContextPath() + "/DashboardManager.jsp");
                                         return;

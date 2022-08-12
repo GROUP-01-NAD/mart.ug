@@ -6,7 +6,7 @@
         
     }else {user = (String)session.getAttribute("user");}
 %>
-
+<%@taglib uri="/WEB-INF/tlds/In_cart.tld" prefix="cart" %>
 
 
     <!-- Topbar Start -->
@@ -117,9 +117,9 @@
                                 <i class="fas fa-heart text-primary"></i>
                                 <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">0</span>
                             </a>
-                            <a href="" class="btn px-0 ml-3">
+                            <a href="staff_cart.jsp" class="btn px-0 ml-3">
                                 <i class="fas fa-shopping-cart text-primary"></i>
-                                <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">23</span>
+                                <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;"><cart:cart user_id="${user_id}"/></span>
                             </a>
                         </div>
                     </div>

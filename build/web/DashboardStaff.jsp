@@ -145,7 +145,7 @@
 <!-- Product_category --> 
 
 <!-- Statistics -->
-<jsp:include page="includes/customer_body.jsp" flush="true"></jsp:include>
+<jsp:include page="includes/staff_body.jsp" flush="true"></jsp:include>
 <!-- Statistics -->
 
 

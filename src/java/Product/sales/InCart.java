@@ -17,6 +17,8 @@ import jakarta.servlet.jsp.tagext.SimpleTagSupport;
 import static jakarta.servlet.jsp.tagext.Tag.SKIP_BODY;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static jdk.internal.vm.vector.VectorSupport.insert;
 
 
@@ -55,7 +57,6 @@ public class InCart extends SimpleTagSupport {
      public void doTag() throws JspException, IOException {
         JspWriter out = getJspContext().getOut();
         
-        Statement stmt = null;
         try{ 
            Class.forName("com.mysql.jdbc.Driver");
            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mart","root","");
@@ -64,19 +65,26 @@ public class InCart extends SimpleTagSupport {
             st = conn.createStatement();
             String sql = "SELECT * FROM cart WHERE user_id = '"+user_id+"'";
             ResultSet rs = st.executeQuery(sql);
+            int rowCount =0;
+            while(rs.next()){
+                if(rs.getInt("status")== 1){
             
-            sql = "SELECT COUNT(*) FROM cart WHERE user_id = '"+user_id+"'";
-            rs = st.executeQuery(sql);
-            // get the number of rows from the result set
-            rs.next();
-            int rowCount = rs.getInt(1);
+                rowCount++;
+            }
+            }
+            
             out.println(rowCount);
-
+            //out.println(user_id);
+            
+            
             rs.close();
             st.close();
             conn.close();
-       }catch(ClassNotFoundException | SQLException e){
-                out.println(e);
-       }
-   }
+            } catch (ClassNotFoundException ex) {
+         Logger.getLogger(InCart.class.getName()).log(Level.SEVERE, null, ex);
+     } catch (SQLException ex) {
+         Logger.getLogger(InCart.class.getName()).log(Level.SEVERE, null, ex);
+     }
+       
+     }
 }

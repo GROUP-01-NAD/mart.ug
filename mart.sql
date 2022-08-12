@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 10, 2022 at 08:01 PM
+-- Generation Time: Aug 12, 2022 at 10:08 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -20,6 +20,42 @@ SET time_zone = "+00:00";
 --
 -- Database: `mart`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `id` int(11) NOT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `status` int(11) DEFAULT 1,
+  `deleted` int(11) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`id`, `product_id`, `user_id`, `status`, `deleted`) VALUES
+(37, 46, 28, 0, 0),
+(38, 37, 28, 0, 0),
+(39, 52, 28, 0, 0),
+(40, 37, 28, 0, 0),
+(41, 52, 28, 0, 0),
+(42, 42, 28, 0, 0),
+(43, 46, 28, 0, 0),
+(44, 46, 32, 0, 0),
+(45, 37, 28, 0, 0),
+(46, 37, 28, 0, 0),
+(47, 46, 32, 0, 0),
+(48, 52, 32, 0, 0),
+(49, 37, 32, 0, 0),
+(50, 37, 28, 0, 0),
+(51, 37, 28, 0, 0),
+(52, 52, 28, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -46,7 +82,9 @@ INSERT INTO `categories` (`id`, `category`, `cat_image`, `date_created`, `descri
 (2, 'Lady Shirt', 'product-2.jpg', '2022-08-10 12:49:20', 'Sell all', 1, NULL),
 (24, 'Suits Men', 'product-9.jpg', '2022-08-10 12:50:07', 'unique attires.', 1, NULL),
 (31, 'Mens Shoes', 'product-7.jpg', '2022-08-10 12:50:37', 'Fresh stocks', 1, NULL),
-(33, 'Hair Dressers', 'product-5.jpg', '2022-08-10 12:51:29', 'For Ladies only', 1, NULL);
+(33, 'Hair Dressers', 'product-5.jpg', '2022-08-10 12:51:29', 'For Ladies only', 1, NULL),
+(35, 'Kitenge', 'product-2.jpg', '2022-08-12 07:59:10', 'Kitenge', 1, NULL),
+(36, 'Kitenge', 'product-2.jpg', '2022-08-12 07:59:49', 'unique attires.', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -107,10 +145,11 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `products`, `date_created`, `status`, `delete`, `quantity`, `quantity_left`, `Price`, `description`, `image`, `image_path`, `uri`, `category`, `product_term`) VALUES
-(37, 'Shoes', '2022-08-10 09:22:39', 1, 0, 23, 21, 56, 'unique attires.', 'cat-1.jpg', NULL, NULL, 2, 84),
-(42, 'Fake Phones', '2022-08-10 09:23:30', 1, 0, 90, 54, 2222, 'unique attires.', 'product-4.jpg', NULL, NULL, 2, 85),
-(46, 'Indian Posho', '2022-08-10 09:24:11', 1, 0, 7676, 98, 222, 'unique attires.', 'cat-1.jpg', NULL, NULL, 1, 83),
-(52, 'German Sherperd', '2022-08-10 10:15:11', 1, 0, 455, 455, 3737, 'New Arrival', 'cat-1.jpg', NULL, NULL, 33, 84);
+(37, 'Shoes', '2022-08-12 07:53:04', 1, 0, 23, 3, 56, 'unique attires.', 'cat-1.jpg', NULL, NULL, 2, 84),
+(42, 'Fake Phones', '2022-08-12 07:53:04', 1, 0, 90, 36, 2222, 'unique attires.', 'product-4.jpg', NULL, NULL, 2, 85),
+(46, 'Indian Posho', '2022-08-12 07:53:04', 1, 0, 7676, 80, 222, 'unique attires.', 'cat-1.jpg', NULL, NULL, 1, 83),
+(52, 'German Sherperd', '2022-08-12 07:53:04', 1, 0, 455, 437, 3737, 'New Arrival', 'cat-1.jpg', NULL, NULL, 33, 84),
+(53, 'Clothes', '2022-08-12 08:01:29', 1, 0, 34, 34, 8989, 'unique attires.', 'product-2.jpg', NULL, NULL, 35, 85);
 
 -- --------------------------------------------------------
 
@@ -135,9 +174,9 @@ CREATE TABLE `product_line` (
 --
 
 INSERT INTO `product_line` (`id`, `product_term`, `quantity`, `quantity_left`, `date_added`, `date_created`, `status`, `deleted`, `description`) VALUES
-(83, 'long term', 10, 3, '2022-08-19', '2022-08-07 10:40:26', 1, 0, 'unique attires.'),
-(84, 'mid term', 20, 8, '2022-08-19', '2022-08-07 10:40:26', 1, 0, 'unique attires.'),
-(85, 'short term', 100, 40, '2022-08-19', '2022-08-07 10:40:26', 1, 0, 'unique attires.');
+(83, 'long term', 50, 3, '2022-08-12', '2022-08-07 10:40:26', 1, 0, 'unique attires.'),
+(84, 'mid term', 100, 8, '2022-08-12', '2022-08-07 10:40:26', 1, 0, 'unique attires.'),
+(85, 'short term', 500, 40, '2022-08-12', '2022-08-07 10:40:26', 1, 0, 'unique attires.');
 
 -- --------------------------------------------------------
 
@@ -206,7 +245,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `user`, `date_added`, `uri`, `status`, `deleted`, `gender`, `location`, `email`, `user_name`, `password`, `role`, `product_line`) VALUES
 (24, 'opio', '2022-08-05 08:54:40', '/ututu', 1, 2, 'm', 'gfgf', 'k', 'sam', 'rrr', 2, 85),
 (25, 'Eluk', '2022-08-05 09:43:59', NULL, 1, 2, 'M', NULL, NULL, NULL, '1111', NULL, NULL),
-(27, 'JUJU', '2022-08-05 09:49:39', NULL, 1, 2, 'M', 'JJJ', 's@w', 'hd', '55', 2, 83),
+(27, 'JUJU', '2022-08-05 09:49:39', NULL, 1, 2, 'M', 'JJJ', 's@w', 'hd', '55', 2, 85),
 (28, 'yyy', '2022-08-05 20:35:02', NULL, 1, 2, 'M', 'hhh', 'a@W', 'bjj', '222', 1, NULL),
 (29, 'okello', '2022-08-06 08:28:23', 'admin', 1, 2, 'M', 'kama', 'a@a', 'dan', '1122', 3, NULL),
 (32, 'hdf', '2022-08-06 09:48:41', NULL, 1, 2, 'F', 'jdjd', 'e@w', 'ww', '11', 1, NULL),
@@ -219,6 +258,12 @@ INSERT INTO `users` (`id`, `user`, `date_added`, `uri`, `status`, `deleted`, `ge
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `categories`
@@ -284,10 +329,16 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+
+--
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -299,7 +350,7 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `product_line`

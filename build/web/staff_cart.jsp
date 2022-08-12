@@ -69,7 +69,7 @@
                         <p style="color:dark">${requestScope.success}</p>
                     </div>
                     <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Customer Dashboard</button>
+                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Staff Dashboard</button>
                         <div class="dropdown-menu dropdown-menu-right">
                             <button class="dropdown-item"><%=user %></button>
                             <form method="post" action="auth_login.jsp">
@@ -124,14 +124,14 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="DashboardCustomer.jsp" class="nav-item nav-link">Home</a>
+                            <a href="DashboardStaff.jsp" class="nav-item nav-link">Home</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
                             <a href="" class="btn px-0">
                                 <i class="fas fa-heart text-primary"></i>
                                 <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">0</span>
                             </a>
-                            <a href="customer_cart.jsp" class="btn px-0 ml-3">
+                            <a href="staff_cart.jsp" class="btn px-0 ml-3">
                                 <i class="fas fa-shopping-cart text-primary"></i>
                                 <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;"><cart:cart user_id="${user_id}"/></span>
                             </a>
@@ -151,7 +151,7 @@
                     <a class="breadcrumb-item text-dark" href="#">Home</a>
                     <a class="breadcrumb-item text-dark" href="#">Shop</a>
                     <span class="breadcrumb-item active">Shopping Cart</span>
-                </nav>    
+                </nav>
             </div>
         </div>
     </div>
@@ -183,11 +183,9 @@
                         String sql = "SELECT * FROM cart INNER JOIN products ON cart.product_id = products.id INNER JOIN users ON cart.user_id = users.id";
                         ResultSet rs = st.executeQuery(sql);
                         while(rs.next()){
-                        if(user_id == rs.getInt("user_id") && rs.getInt("status") == 1) {
+                        if(user_id == rs.getInt("user_id")) {
                         cart_products.add(rs.getString("products.products"));
                         total = total + rs.getInt("products.price");
-                        
-                        
                     %>
                     <tbody class="align-middle">
                         <tr>
@@ -214,8 +212,8 @@
                             <h5>$<%out.println(total);%></h5>
                         </div>
                         <form action="checkout_all.jsp" method="post">
-                            <input type="hidden" id="action" name="checkout" value="checkout_customer" hidden>
-                            <input hidden="true" value="<%=user_id%>" name="customer_id">
+                            <input type="hidden" id="action" name="checkout" value="checkout_staff" hidden>
+                            <input hidden="true" value="<%=user_id%>" name="staff_id">
                             <button type="submit" class="btn btn-block btn-primary font-weight-bold my-3 py-3">Proceed To Checkout</button>
                         </form>
                  
